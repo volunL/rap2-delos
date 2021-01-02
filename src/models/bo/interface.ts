@@ -1,4 +1,22 @@
-import { Table, Column, Model, HasMany, AutoIncrement, PrimaryKey, AllowNull, DataType, Default, BelongsTo, ForeignKey, BeforeBulkDestroy, BeforeBulkCreate, BeforeBulkUpdate, BeforeCreate, BeforeUpdate, BeforeDestroy } from 'sequelize-typescript'
+import {
+  Table,
+  Column,
+  Model,
+  HasMany,
+  AutoIncrement,
+  PrimaryKey,
+  AllowNull,
+  DataType,
+  Default,
+  BelongsTo,
+  ForeignKey,
+  BeforeBulkDestroy,
+  BeforeBulkCreate,
+  BeforeBulkUpdate,
+  BeforeCreate,
+  BeforeUpdate,
+  BeforeDestroy,
+} from 'sequelize-typescript'
 import { User, Module, Repository, Property } from '../'
 import RedisService, { CACHE_KEY } from '../../service/redis'
 import * as Sequelize from 'sequelize'
@@ -6,16 +24,20 @@ import { BODY_OPTION } from '../../routes/utils/const'
 
 const Op = Sequelize.Op
 
-enum methods { GET = 'GET', POST = 'POST', PUT = 'PUT', DELETE = 'DELETE' }
+enum methods {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}
 
 export enum MoveOp {
   MOVE = 1,
-  COPY = 2
+  COPY = 2,
 }
 
 @Table({ paranoid: true, freezeTableName: false, timestamps: true })
 export default class Interface extends Model<Interface> {
-
   /** hooks */
   @BeforeCreate
   @BeforeUpdate
@@ -65,8 +87,9 @@ export default class Interface extends Model<Interface> {
   @Column(DataType.STRING(256))
   url: string
 
-  @AllowNull(false)
-  @Column({ comment: 'API method' })
+  // 不一定是http接口  method参数允许为空
+  @AllowNull(true)
+  @Column({ comment: 'HTTP API method' })
   method: string
 
   @Column({ type: DataType.STRING(255) })
@@ -80,9 +103,13 @@ export default class Interface extends Model<Interface> {
   @Column(DataType.BIGINT())
   priority: number
 
-  @Default(200)
+  // 不一定是http接口  status无默认值
   @Column
   status: number
+
+  // 添加接口类型
+  @Column({ type: DataType.STRING(255), comment: '接口类型' })
+  interface_type: string
 
   @ForeignKey(() => User)
   @Column
@@ -114,6 +141,4 @@ export default class Interface extends Model<Interface> {
 
   @HasMany(() => Property, 'interfaceId')
   properties: Property[]
-
 }
-

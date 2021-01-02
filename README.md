@@ -1,6 +1,6 @@
-# RAP2-DELOS 开源社区版本 (后端 API 服务器)
+# RAP2-DELOS by volun
 
-在阿里的基础上增加支持非HTTP接口的归类
+在原项目基础上增加支持非HTTP接口的归类
 
 1.inteface表增加字段(interface_type)区分接口类型
 
@@ -9,8 +9,24 @@
 
 
 
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+
+
 --------------分割线下为原项目说明-------------------
-原项目链接:[![Build Status](https://travis-ci.org/thx/rap2-delos.svg?branch=master)](https://travis-ci.org/thx/rap2-delos)
+
+**原项目链接**:[![Build Status](https://travis-ci.org/thx/rap2-delos.svg?branch=master)](https://travis-ci.org/thx/rap2-delos)
+
+
+# RAP2-DELOS 开源社区版本 (后端 API 服务器)
+
+**原项目链接**:[![Build Status](https://travis-ci.org/thx/rap2-delos.svg?branch=master)](https://travis-ci.org/thx/rap2-delos)
 
 RAP2 是在 RAP1 基础上重做的新项目，它能给你提供方便的接口文档管理、Mock、导出等功能，包含两个组件(对应两个 Github Repository)。
 
